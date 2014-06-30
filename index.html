@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="store">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>My shopping list</title>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="shop.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My shopping list</h1>
+<div ng-controller='ShopCtrl'>
+    <ul>
+        <li ng-repeat="item in items">
+            <input type="checkbox" ng-model="item.done">
+            <span class="done-{{item.done}}">{{"Name: " + item.text + " &nbsp &nbsp &nbsp  Quantity: " + item.quantity + " &nbsp &nbsp &nbsp Description: " + item.description}} </span>
+        </li>
+    </ul>
+    <form ng-submit="addItem()">
+        <input type="text" ng-model="itemEntry" placeholder="Type and hit Enter to add item ">
+    </form>
+  <span>{{remaining()}} of {{items.length}} remaining</span>
+
+    <button ng-click = "deleted()">Delete bought</button>
+</div>
+</body>
+</html>
