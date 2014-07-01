@@ -8,20 +8,41 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My shopping list</h1>
+<h1> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My shopping list</h1>
 <div ng-controller='ShopCtrl'>
     <ul>
         <li ng-repeat="item in items">
             <input type="checkbox" ng-model="item.done">
             <span class="done-{{item.done}}">{{"Name: " + item.text + " &nbsp &nbsp &nbsp  Quantity: " + item.quantity + " &nbsp &nbsp &nbsp Description: " + item.description}} </span>
+            <button ng-click="showNew()">Editare</button>
+            <div ng-show="showInputsEditedProduct" >
+                Name : <input type="text" ng-model="item.text"/>
+                Quantity : <input type="number" ng-model="item.quantity"/>
+                Description : <input type="text" ng-model="item.description"/><br>
+
+            </div>
         </li>
     </ul>
-    <form ng-submit="addItem()">
-        <input type="text" ng-model="itemEntry" placeholder="Type and hit Enter to add item ">
-    </form>
+
   <span>{{remaining()}} of {{items.length}} remaining</span>
 
     <button ng-click = "deleted()">Delete bought</button>
-</div>
+
+
+        <div><button ng-click="show()" >Add product</button></div>
+
+            <div ng-show="showInputProduct" >
+                <br>
+                <br>
+                Product name : <input type="text" ng-model="newProductName"/><br />
+                Quantity : <input type="number" ng-model="newProductQuantity"/><br />
+                Description : <input type="text" ng-model="newProductDescription"/><br />
+
+                <div> <button ng-click="addProduct()">Add</button> </div>
+
+
+            </div>
+    </div>
+
 </body>
 </html>

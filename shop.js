@@ -4,7 +4,7 @@
 
 var app = angular.module('store',[]);
 
-function ShopCtrl($scope, filterFilter) {
+function ShopCtrl($scope) {
 
     $scope.items = [
         {id: 1, text: 'Cheese', bought: false, quantity:'2', description:'este foarte sanatoasa'},
@@ -13,7 +13,8 @@ function ShopCtrl($scope, filterFilter) {
     ];
 
     $scope.nextId = $scope.items.length + 1;
-
+    $scope.showInputProduct = false;
+    $scope.showInputsEditedProduct = false;
 
     $scope.remaining = function() {
         var count = 0;
@@ -32,11 +33,26 @@ function ShopCtrl($scope, filterFilter) {
         });
     };
 
-
-    $scope.addItem = function() {
-        $scope.items.push({text: $scope.itemEntry, bought: false, id: ($scope.nextId) });
-        $scope.nextId++;
-        $scope.itemEntry = '';
+    $scope.addProduct = function () {
+        $scope.items.push({
+            text: $scope.newProductName,
+            quantity: $scope.newProductQuantity,
+            description: $scope.newProductDescription,
+            bought: false
+        });
+        $scope.newProductName = "";
+        $scope.newProductQuantity = "";
+        $scope.newProductDescription = "";
+        $scope.productsInList=true;
     };
 
+    $scope.show = function () {
+        $scope.showInputProduct = !$scope.showInputProduct;
+    };
+
+    $scope.showNew = function () {
+        this.showInputsEditedProduct = !this.showInputsEditedProduct;
+    };
 }
+
+
