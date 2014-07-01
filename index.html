@@ -11,7 +11,7 @@
 <h1> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp My shopping list</h1>
 <div ng-controller='ShopCtrl'>
     <ul>
-        <li ng-repeat="item in items">
+        <li ng-repeat="item in items | filter:search">
             <input type="checkbox" ng-model="item.done">
             <span class="done-{{item.done}}">{{"Name: " + item.text + " &nbsp &nbsp &nbsp  Quantity: " + item.quantity + " &nbsp &nbsp &nbsp Description: " + item.description}} </span>
             <button ng-click="showNew()">Editare</button>
@@ -42,6 +42,15 @@
 
 
             </div>
+
+    <div>Search: <input ng-model="search">
+        <div ng-repeat="student in class | filter:search">
+            {{item.text}}
+            {{item.quantity}}
+            {{item.description}}
+        </div>
+    </div>
+
     </div>
 
 </body>
